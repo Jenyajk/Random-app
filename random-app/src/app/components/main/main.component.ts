@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {UsaService} from "../../core/usa/usa.service";
+import {KoreaService} from "../../core/korea/korea.service";
+
 
 
 
@@ -13,7 +15,6 @@ export interface PeriodicElement {
 
 const USER_DATA: PeriodicElement[] = [
   {index: 1, identifier: 123, name: '1.0079', address: 'H', phone: 'H'},
-
 ];
 
 @Component({
@@ -22,12 +23,15 @@ const USER_DATA: PeriodicElement[] = [
   styleUrls: ['./main.component.css']
 })
 
-export class MainComponent {
+export class MainComponent implements OnInit{
   public dataSource!: PeriodicElement[]
   public displayedColumns!: string[]
   public result: string[] = [];
-  public index: number[] = []
-  //код америки +1 ххх ххх хххх
+  public index: number[] = [];
+  public phonenumber: string = ''
+  favoriteSeason: string = 'USA'
+  seasons: string[] = ['USA', 'RUSSIA', 'SOUTH KOREA'];
+
   disabled = false;
   max = 10;
   min = 0;
@@ -38,21 +42,32 @@ export class MainComponent {
   fileName: any;
   sourcePath: any;
 
-  constructor(private usa: UsaService) {}
+  constructor(private usa: UsaService, private korea: KoreaService) {}
 
 
   public  generate() {
     this.displayedColumns = ['position', 'name', 'weight', 'symbol', 'phone'];
-    return  this.dataSource = USER_DATA;
+    if (this.favoriteSeason === 'USA') {
+      this.usa.generateData()
+      this.dataSource = this.usa.data_usa
+    } else if (this.favoriteSeason === 'SOUTH KOREA') {
+      this.korea.generateData()
+      this.dataSource = this.korea.data_korea
+    } else  {
+      console.log('ddd')
+    }
   }
 
-  public randomName():void {
-this.usa.generateData()
-  }
 
-  public downloadCSV(){
+  public downloadCSV(){}
+
+  ngOnInit() {
+    this.generate()
+
 
   }
 
 
 }
+
+

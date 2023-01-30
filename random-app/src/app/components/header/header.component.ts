@@ -8,6 +8,5 @@ import {MatRadioModule} from '@angular/material/radio';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  favoriteSeason!: string;
-  seasons: string[] = ['USA', 'UZBEKISTAN', 'SOUTH KOREA'];
+
 }

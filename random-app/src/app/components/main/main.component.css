@@ -29,3 +29,31 @@ tr.mat-footer-row {
   height: 30px;
   color: #e7e7e7;
 }
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+  gap: 10px;
+}
+.radios {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+}
+
+.example-radio-button {
+  margin: 3px;
+}
+.header{
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.choose{
+  margin: 0;
+}
