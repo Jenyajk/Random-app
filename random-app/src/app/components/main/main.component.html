@@ -1,18 +1,16 @@
+<div class="main-wrap">
 <div class="header">
   <label id="example-radio-group-label">Please, choose region:</label>
   <mat-radio-group
     aria-labelledby="example-radio-group-label"
     class="example-radio-group radios"
     [(ngModel)]="favoriteSeason">
-    <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+    <mat-radio-button color="primary" class="example-radio-button" *ngFor="let season of seasons" [value]="season">
       {{season}}
     </mat-radio-button>
   </mat-radio-group>
-  <div>Region {{favoriteSeason}}</div>
 </div>
 <div  class="wrap">
-
-
   <mat-slider
     class="example-margin"
     [disabled]="disabled"
@@ -23,37 +21,30 @@
     [showTickMarks]="showTicks">
     <input matSliderThumb [(ngModel)]="value">
   </mat-slider>
-
   <p>{{value}}</p>
-
 </div>
 <div>
   <button (click)="generate()" class="download">GENERATE</button>
   <button (click)='downloadCSV()' class="download">Export to CSV</button>
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8 example-container">
-    <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef> Index </mat-header-cell>
-      <mat-cell *matCellDef="let element" class="list"> {{element.index}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Identifier </mat-header-cell>
-      <mat-cell *matCellDef="let element" class="list"> {{element.identifier}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="weight">
-      <mat-header-cell *matHeaderCellDef> Full name </mat-header-cell>
-      <mat-cell *matCellDef="let element" class="list"> {{element.name}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="symbol">
-      <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
-      <mat-cell *matCellDef="let element" class="list"> {{element.address}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="phone">
-      <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
-      <mat-cell *matCellDef="let element" class="list"> {{element.phone}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+  <div class="wrap-table">
+  <table >
+    <tbody>
+    <tr>
+      <th>Index</th>
+      <th>Identifier</th>
+      <th>Full name</th>
+      <th>Address</th>
+      <th>Phone</th>
+    </tr>
+    <tr *ngFor="let data of dataSource">
+      <td>{{data.index}}</td>
+      <td>{{data.identifier}}</td>
+      <td>{{data.name}}</td>
+      <td>{{data.address}}</td>
+      <td>{{data.phone}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
-
+</div>
+</div>

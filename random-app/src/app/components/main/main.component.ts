@@ -1,6 +1,7 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import {UsaService} from "../../core/usa/usa.service";
 import {KoreaService} from "../../core/korea/korea.service";
+import {RussiaService} from "../../core/russia/russia.service";
 
 
 
@@ -42,7 +43,7 @@ export class MainComponent implements OnInit{
   fileName: any;
   sourcePath: any;
 
-  constructor(private usa: UsaService, private korea: KoreaService) {}
+  constructor(private usa: UsaService, private korea: KoreaService,private russia:  RussiaService) {}
 
 
   public  generate() {
@@ -54,7 +55,8 @@ export class MainComponent implements OnInit{
       this.korea.generateData()
       this.dataSource = this.korea.data_korea
     } else  {
-      console.log('ddd')
+      this.russia.generateData()
+      this.dataSource = this.russia.data_russia
     }
   }
 
